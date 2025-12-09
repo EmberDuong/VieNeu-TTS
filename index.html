@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VieNeu-TTS - Giọng nói Việt, chân thật đến từng hạt âm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="vi">VI</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">VieNeu-TTS</div>
+            <div class="nav-links">
+                <a href="#features" data-i18n="nav.features">Tính năng</a>
+                <a href="#demo" data-i18n="nav.demo">Demo</a>
+                <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
+                <a href="#tech" data-i18n="nav.tech">Kỹ thuật</a>
+                <a href="#author" data-i18n="nav.author">Tác giả</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="glowing-orb orb-1"></div>
+            <div class="glowing-orb orb-2"></div>
+            <div class="glowing-orb orb-3"></div>
+            <canvas id="particles-canvas"></canvas>
+            <div class="waveform-container">
+                <canvas id="waveform-canvas"></canvas>
+            </div>
+            <div class="gradient-mesh"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text" data-i18n="hero.badge">✨ Next-Gen TTS</span>
+            </div>
+            <h1 class="hero-title" data-i18n="hero.title">VieNeu-TTS — Giọng nói Việt, chân thật đến từng hạt âm.</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Instant voice cloning. 24 kHz. Hoàn toàn offline.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label" data-i18n="hero.stat1">Hours of Data</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label" data-i18n="hero.stat2">kHz Quality</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label" data-i18n="hero.stat3">Seconds Clone</div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="https://huggingface.co/spaces/pnnbao-ump/VieNeu-TTS" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <span data-i18n="hero.tryDemo">Try Demo</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/pnnbao97/VieNeu-TTS" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="hero.github">GitHub</a>
+                <a href="https://www.facebook.com/pnnbao" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="hero.facebook">Facebook</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Highlights -->
+    <section class="highlights">
+        <div class="section-bg-pattern"></div>
+        <div class="container">
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">📊</div>
+                    <h3 data-i18n="highlight.1.title">1000 giờ dữ liệu tuyển chọn</h3>
+                    <p data-i18n="highlight.1.desc">Phát âm tự nhiên, ổn định</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">⚡</div>
+                    <h3 data-i18n="highlight.2.title">Voice cloning tức thì</h3>
+                    <p data-i18n="highlight.2.desc">Chỉ cần 3–5 giây audio</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🌐</div>
+                    <h3 data-i18n="highlight.3.title">Song ngữ Việt–Anh</h3>
+                    <p data-i18n="highlight.3.desc">Code-switching mượt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Demo Section -->
+    <section id="demo" class="audio-demo">
+        <div class="container">
+            <h2 class="section-title" data-i18n="demo.title">Audio Demo</h2>
+            <p class="section-subtitle" data-i18n="demo.subtitle">Khám phá các giọng nói mẫu với nhiều accent khác nhau</p>
+            <div class="audio-grid">
+                <div class="audio-card">
+                    <div class="audio-card-header">
+                        <div class="voice-info">
+                            <span class="voice-name" data-i18n="demo.voice1.name">Nam - Miền Bắc</span>
+                            <span class="voice-type">Male - North</span>
+                        </div>
+                    </div>
+                    <div class="waveform-visualizer">
+                        <canvas class="waveform" width="300" height="60"></canvas>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="play-btn" data-audio="sample1">
+                            <span class="play-icon">▶</span>
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="audio-card">
+                    <div class="audio-card-header">
+                        <div class="voice-info">
+                            <span class="voice-name" data-i18n="demo.voice2.name">Nữ - Miền Bắc</span>
+                            <span class="voice-type">Female - North</span>
+                        </div>
+                    </div>
+                    <div class="waveform-visualizer">
+                        <canvas class="waveform" width="300" height="60"></canvas>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="play-btn" data-audio="sample2">
+                            <span class="play-icon">▶</span>
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="audio-card">
+                    <div class="audio-card-header">
+                        <div class="voice-info">
+                            <span class="voice-name" data-i18n="demo.voice3.name">Nam - Miền Nam</span>
+                            <span class="voice-type">Male - South</span>
+                        </div>
+                    </div>
+                    <div class="waveform-visualizer">
+                        <canvas class="waveform" width="300" height="60"></canvas>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="play-btn" data-audio="sample3">
+                            <span class="play-icon">▶</span>
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="audio-card">
+                    <div class="audio-card-header">
+                        <div class="voice-info">
+                            <span class="voice-name" data-i18n="demo.voice4.name">Nữ - Miền Nam</span>
+                            <span class="voice-type">Female - South</span>
+                        </div>
+                    </div>
+                    <div class="waveform-visualizer">
+                        <canvas class="waveform" width="300" height="60"></canvas>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="play-btn" data-audio="sample4">
+                            <span class="play-icon">▶</span>
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="audio-card">
+                    <div class="audio-card-header">
+                        <div class="voice-info">
+                            <span class="voice-name" data-i18n="demo.voice5.name">Nam - Miền Trung</span>
+                            <span class="voice-type">Male - Central</span>
+                        </div>
+                    </div>
+                    <div class="waveform-visualizer">
+                        <canvas class="waveform" width="300" height="60"></canvas>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="play-btn" data-audio="sample5">
+                            <span class="play-icon">▶</span>
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="audio-card">
+                    <div class="audio-card-header">
+                        <div class="voice-info">
+                            <span class="voice-name" data-i18n="demo.voice6.name">Nữ - Miền Trung</span>
+                            <span class="voice-type">Female - Central</span>
+                        </div>
+                    </div>
+                    <div class="waveform-visualizer">
+                        <canvas class="waveform" width="300" height="60"></canvas>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="play-btn" data-audio="sample6">
+                            <span class="play-icon">▶</span>
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features -->
+    <section id="features" class="features">
+        <div class="section-bg-pattern"></div>
+        <div class="container">
+            <h2 class="section-title" data-i18n="features.title">Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 data-i18n="features.1">Natural Vietnamese pronunciation</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3 data-i18n="features.2">Fully offline inference</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 data-i18n="features.3">CPU/GPU support, GGUF soon</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎤</div>
+                    <h3 data-i18n="features.4">High-fidelity voice cloning</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3 data-i18n="features.5">Real-time synthesis</h3>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3 data-i18n="features.6">Production-ready API/UI</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title" data-i18n="comparison.title">Model Comparison</h2>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="comparison-cell"></div>
+                    <div class="comparison-cell" data-i18n="comparison.model140">VieNeu-TTS-140h</div>
+                    <div class="comparison-cell highlight" data-i18n="comparison.model1000">VieNeu-TTS-1000h</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell" data-i18n="comparison.dataset">Dataset size</div>
+                    <div class="comparison-cell">140h</div>
+                    <div class="comparison-cell highlight">1000h</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell" data-i18n="comparison.pronunciation">Pronunciation quality</div>
+                    <div class="comparison-cell">Good</div>
+                    <div class="comparison-cell highlight">Excellent</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell" data-i18n="comparison.cloning">Cloning accuracy</div>
+                    <div class="comparison-cell">High</div>
+                    <div class="comparison-cell highlight">Very High</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell" data-i18n="comparison.codeswitch">Code-switching</div>
+                    <div class="comparison-cell">Good</div>
+                    <div class="comparison-cell highlight">Excellent</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell" data-i18n="comparison.speed">Speed</div>
+                    <div class="comparison-cell">Fast</div>
+                    <div class="comparison-cell highlight">Very Fast</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Showcase -->
+    <section class="video-showcase">
+        <div class="container">
+            <h2 class="section-title" data-i18n="video.title">Installation Guide</h2>
+            <div class="video-container">
+                <iframe 
+                    title="VieNeu-TTS Installation Guide Video"
+                    src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1362972618623766&show_text=false&width=267&t=0" 
+                    width="100%" 
+                    height="476" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title" data-i18n="pricing.title">Custom Voice Training Pricing</h2>
+            
+            <div class="pricing-tabs">
+                <button class="pricing-tab active" data-tab="cleaned" data-i18n="pricing.cleaned">Cleaned + Transcribed Data</button>
+                <button class="pricing-tab" data-tab="raw" data-i18n="pricing.raw">Raw Audio Data</button>
+            </div>
+
+            <div class="pricing-content">
+                <div class="pricing-tab-content active" id="cleaned-pricing">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-amount">$300</div>
+                            <div class="pricing-range" data-i18n="pricing.under10h">Under 10h</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-amount">$700</div>
+                            <div class="pricing-range" data-i18n="pricing.10to30h">10–30h</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-amount">$1,200</div>
+                            <div class="pricing-range" data-i18n="pricing.30to50h">30–50h</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-amount" data-i18n="pricing.custom">Custom</div>
+                            <div class="pricing-range" data-i18n="pricing.over50h">Over 50h</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-tab-content" id="raw-pricing">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-amount">$500</div>
+                            <div class="pricing-range" data-i18n="pricing.under10h">Under 10h</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-amount">$1,000</div>
+                            <div class="pricing-range" data-i18n="pricing.10to30h">10–30h</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-amount">$1,700</div>
+                            <div class="pricing-range" data-i18n="pricing.30to50h">30–50h</div>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="pricing-amount" data-i18n="pricing.custom">Custom</div>
+                            <div class="pricing-range" data-i18n="pricing.over50h">Over 50h</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-includes">
+                <h3 data-i18n="pricing.includes">Includes</h3>
+                <ul>
+                    <li data-i18n="pricing.includes.1">Commercial license</li>
+                    <li data-i18n="pricing.includes.2">Model file + integration guide</li>
+                    <li data-i18n="pricing.includes.3">2 free revisions</li>
+                    <li data-i18n="pricing.includes.4">30 days technical support</li>
+                </ul>
+                <p class="pricing-tip" data-i18n="pricing.tip">💡 Tip: Preparing data according to the official guidelines can reduce costs by 40–50%.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section id="tech" class="tech-specs">
+        <div class="container">
+            <h2 class="section-title" data-i18n="tech.title">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.backbone">Backbone:</span>
+                    <span class="spec-value">Qwen 0.5B</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.codec">Codec:</span>
+                    <span class="spec-value">NeuCodec (ONNX + quantized)</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.context">Context:</span>
+                    <span class="spec-value">2048 tokens</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.watermark">Watermark:</span>
+                    <span class="spec-value" data-i18n="tech.enabled">Enabled</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.dataset">Dataset:</span>
+                    <span class="spec-value">VieNeu-TTS-1000h</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.api">API:</span>
+                    <span class="spec-value">Python API + CLI + Gradio UI</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="tech.offline">Offline:</span>
+                    <span class="spec-value" data-i18n="tech.fully">Fully offline capability</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="author" class="author">
+        <div class="section-bg-pattern"></div>
+        <div class="container">
+            <h2 class="section-title" data-i18n="author.title">About the Creator</h2>
+            <div class="author-card">
+                <div class="author-avatar">
+                    <div class="avatar-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="avatar-glow"></div>
+                </div>
+                <div class="author-info">
+                    <h3 class="author-name" data-i18n="author.name">Phạm Nguyễn Ngọc Bảo</h3>
+                    <p class="author-role" data-i18n="author.role">Creator & Developer</p>
+                    <p class="author-bio" data-i18n="author.bio">Passionate AI researcher and developer dedicated to advancing Vietnamese Text-to-Speech technology. Creator of VieNeu-TTS, bringing authentic Vietnamese voices to the world.</p>
+                    <div class="author-links">
+                        <a href="https://www.facebook.com/pnnbao" target="_blank" rel="noopener noreferrer" class="author-link facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span data-i18n="author.facebook">Facebook</span>
+                        </a>
+                        <a href="https://github.com/pnnbao97" target="_blank" rel="noopener noreferrer" class="author-link github">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            <span data-i18n="author.github">GitHub</span>
+                        </a>
+                        <a href="https://huggingface.co/pnnbao-ump" target="_blank" rel="noopener noreferrer" class="author-link huggingface">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm-1.2 4.8v9.6h2.4V7.2h-2.4zm0-2.4h2.4v2.4h-2.4V4.8z"/>
+                            </svg>
+                            <span data-i18n="author.huggingface">Hugging Face</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Projects -->
+            <div class="other-projects">
+                <h3 class="other-projects-title" data-i18n="author.otherProjects">Other Projects</h3>
+                <div class="project-card">
+                    <div class="project-icon">🌀</div>
+                    <div class="project-info">
+                        <h4 class="project-name">
+                            <a href="https://github.com/pnnbao97/wordflux" target="_blank" rel="noopener noreferrer" class="project-link">
+                                WordFlux
+                            </a>
+                        </h4>
+                        <p class="project-description" data-i18n="author.wordflux.desc">Translate DOCX using OpenAI - Preserve Format. Intelligent tool for translating Microsoft Word documents while maintaining perfect formatting.</p>
+                        <a href="https://github.com/pnnbao97/wordflux" target="_blank" rel="noopener noreferrer" class="project-github-link" data-i18n="author.viewProject">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title" data-i18n="cta.title">Đưa giọng Việt của bạn vào bất kỳ sản phẩm nào.</h2>
+            <div class="cta-buttons">
+                <a href="https://huggingface.co/spaces/pnnbao-ump/VieNeu-TTS" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="cta.demo">Try Demo</a>
+                <a href="https://github.com/pnnbao97/VieNeu-TTS" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="cta.github">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VieNeu-TTS</h3>
+                    <p data-i18n="footer.desc">Next-generation Vietnamese Text-to-Speech system</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.links">Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/pnnbao97/VieNeu-TTS" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://huggingface.co/pnnbao-ump/VieNeu-TTS" target="_blank" rel="noopener noreferrer">Model Card</a></li>
+                        <li><a href="https://huggingface.co/spaces/pnnbao-ump/VieNeu-TTS" target="_blank" rel="noopener noreferrer">Demo</a></li>
+                        <li><a href="https://www.facebook.com/pnnbao" target="_blank" rel="noopener noreferrer" data-i18n="footer.author">Author</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VieNeu-TTS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
