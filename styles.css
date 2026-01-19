@@ -36,7 +36,8 @@ body.lang-vi .target-en,
 body.lang-vi .note-en,
 body.lang-vi .training-tip-en,
 body.lang-vi .tab-en,
-body.lang-vi .voice-type-en {
+body.lang-vi .voice-type-en,
+body.lang-vi .text-en {
     display: none;
 }
 
@@ -44,7 +45,8 @@ body.lang-vi .voice-type-en {
 body.lang-en .feature-vi,
 body.lang-en .pricing-amount:not(.pricing-amount-en),
 body.lang-en .tab-vi,
-body.lang-en .voice-type-vi {
+body.lang-en .voice-type-vi,
+body.lang-en .text-vi {
     display: none;
 }
 
