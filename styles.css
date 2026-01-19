@@ -28,6 +28,59 @@ body {
     cursor: default;
 }
 
+/* Language-based content visibility */
+/* Vietnamese mode - show Vietnamese, hide English */
+body.lang-vi .feature-en,
+body.lang-vi .pricing-amount-en,
+body.lang-vi .target-en,
+body.lang-vi .note-en,
+body.lang-vi .training-tip-en,
+body.lang-vi .tab-en,
+body.lang-vi .voice-type-en {
+    display: none;
+}
+
+/* English mode - show English, hide Vietnamese */
+body.lang-en .feature-vi,
+body.lang-en .pricing-amount:not(.pricing-amount-en),
+body.lang-en .tab-vi,
+body.lang-en .voice-type-vi {
+    display: none;
+}
+
+body.lang-en .feature-en,
+body.lang-en .pricing-amount-en,
+body.lang-en .target-en,
+body.lang-en .note-en,
+body.lang-en .training-tip-en,
+body.lang-en .tab-en,
+body.lang-en .voice-type-en {
+    display: block;
+}
+
+/* Hide English target text under Vietnamese paragraphs when in English */
+body.lang-en .package-target p:not(.target-en) {
+    display: none;
+}
+
+/* Show English amount text properly */
+body.lang-en .pricing-amount-en {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Default: start with Vietnamese visible */
+body:not(.lang-vi):not(.lang-en) .feature-en,
+body:not(.lang-vi):not(.lang-en) .pricing-amount-en,
+body:not(.lang-vi):not(.lang-en) .target-en,
+body:not(.lang-vi):not(.lang-en) .note-en {
+    display: none;
+}
+
 body.mouse-move-active {
     cursor: none;
 }
@@ -51,17 +104,17 @@ body.mouse-move-active {
 
 /* Language Switcher */
 .language-switcher {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    position: relative;
     z-index: 1000;
     display: flex;
-    gap: 8px;
+    gap: 4px;
     background: rgba(30, 30, 45, 0.8);
     backdrop-filter: blur(10px);
     padding: 4px;
     border-radius: 8px;
     border: 1px solid rgba(139, 92, 246, 0.3);
+    margin-left: 1.5rem;
+    flex-shrink: 0;
 }
 
 .lang-btn {
@@ -2006,5 +2059,191 @@ html {
 
     .package-name {
         font-size: 1.25rem;
+    }
+}
+
+/* Custom Voice Training Pricing */
+.training-pricing-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.training-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.training-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.pricing-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.pricing-tab {
+    padding: 1rem 2rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.pricing-tab .tab-vi {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.pricing-tab .tab-en {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.pricing-tab.active {
+    background: var(--gradient-1);
+    border-color: var(--primary-purple);
+    color: white;
+}
+
+.pricing-tab.active .tab-en {
+    opacity: 1;
+}
+
+.pricing-tab:hover:not(.active) {
+    border-color: var(--primary-purple);
+    color: var(--text-primary);
+}
+
+.pricing-content {
+    position: relative;
+}
+
+.pricing-tab-content {
+    display: none;
+}
+
+.pricing-tab-content.active {
+    display: block;
+}
+
+.training-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.training-pricing-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.training-pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-purple);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.training-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.training-range {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.training-includes {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.training-includes h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-purple);
+}
+
+.training-includes ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.training-includes li {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.training-includes li::before {
+    content: '✓';
+    color: #4ade80;
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.training-tip {
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.training-tip-en {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+    .training-pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .training-pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .training-includes ul {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-tabs {
+        flex-direction: column;
     }
 }
