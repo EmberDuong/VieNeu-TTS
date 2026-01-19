@@ -5,19 +5,21 @@ const translations = {
         'nav.demo': 'Demo',
         'nav.pricing': 'Bảng giá',
         'nav.tech': 'Kỹ thuật',
+        'nav.download': 'Tải về',
         'nav.author': 'Tác giả',
-        
+
         // Hero
         'hero.badge': '✨ Next-Gen TTS',
         'hero.title': 'VieNeu-TTS — Giọng nói Việt, chân thật đến từng hạt âm.',
         'hero.subtitle': 'Instant voice cloning. 24 kHz. Hoàn toàn offline.',
         'hero.tryDemo': 'Try Demo',
+        'hero.download': 'Tải về',
         'hero.github': 'GitHub',
         'hero.facebook': 'Facebook',
         'hero.stat1': 'Giờ Dữ Liệu',
         'hero.stat2': 'kHz Chất Lượng',
         'hero.stat3': 'Giây Clone',
-        
+
         // Highlights
         'highlight.1.title': '1000 giờ dữ liệu tuyển chọn',
         'highlight.1.desc': 'Phát âm tự nhiên, ổn định',
@@ -25,7 +27,7 @@ const translations = {
         'highlight.2.desc': 'Chỉ cần 3–5 giây audio',
         'highlight.3.title': 'Song ngữ Việt–Anh',
         'highlight.3.desc': 'Code-switching mượt',
-        
+
         // Demo
         'demo.title': 'Audio Demo',
         'demo.subtitle': 'Khám phá các giọng nói mẫu với nhiều accent khác nhau',
@@ -35,7 +37,7 @@ const translations = {
         'demo.voice4.name': 'Nữ - Miền Nam',
         'demo.voice5.name': 'Nam - Miền Trung',
         'demo.voice6.name': 'Nữ - Miền Trung',
-        
+
         // Features
         'features.title': 'Tính năng chính',
         'features.1': 'Phát âm tiếng Việt tự nhiên',
@@ -44,7 +46,7 @@ const translations = {
         'features.4': 'Voice cloning chất lượng cao',
         'features.5': 'Tổng hợp thời gian thực',
         'features.6': 'API/UI sẵn sàng cho production',
-        
+
         // Comparison
         'comparison.title': 'So sánh mô hình',
         'comparison.model140': 'VieNeu-TTS-140h',
@@ -54,10 +56,10 @@ const translations = {
         'comparison.cloning': 'Độ chính xác cloning',
         'comparison.codeswitch': 'Code-switching',
         'comparison.speed': 'Tốc độ',
-        
+
         // Video
         'video.title': 'Hướng dẫn cài đặt',
-        
+
         // Pricing
         'pricing.title': 'Bảng giá Custom Voice Training',
         'pricing.cleaned': 'Dữ liệu đã làm sạch + phiên âm',
@@ -73,7 +75,7 @@ const translations = {
         'pricing.includes.3': '2 lần chỉnh sửa miễn phí',
         'pricing.includes.4': 'Hỗ trợ kỹ thuật 30 ngày',
         'pricing.tip': '💡 Mẹo: Chuẩn bị dữ liệu theo hướng dẫn chính thức có thể giảm chi phí 40–50%.',
-        
+
         // Tech Specs
         'tech.title': 'Thông số kỹ thuật',
         'tech.backbone': 'Backbone',
@@ -85,12 +87,12 @@ const translations = {
         'tech.api': 'API',
         'tech.offline': 'Offline',
         'tech.fully': 'Hoàn toàn offline',
-        
+
         // CTA
         'cta.title': 'Đưa giọng Việt của bạn vào bất kỳ sản phẩm nào.',
         'cta.demo': 'Try Demo',
         'cta.github': 'GitHub',
-        
+
         // Author
         'author.title': 'Về Tác Giả',
         'author.name': 'Phạm Nguyễn Ngọc Bảo',
@@ -102,7 +104,7 @@ const translations = {
         'author.otherProjects': 'Dự án khác',
         'author.wordflux.desc': 'Dịch DOCX bằng OpenAI - Giữ nguyên định dạng. Công cụ thông minh để dịch tài liệu Microsoft Word trong khi duy trì định dạng hoàn hảo.',
         'author.viewProject': 'Xem dự án',
-        
+
         // Footer
         'footer.desc': 'Hệ thống Text-to-Speech tiếng Việt thế hệ mới',
         'footer.links': 'Liên kết',
@@ -114,19 +116,21 @@ const translations = {
         'nav.demo': 'Demo',
         'nav.pricing': 'Pricing',
         'nav.tech': 'Technical',
+        'nav.download': 'Download',
         'nav.author': 'Author',
-        
+
         // Hero
         'hero.badge': '✨ Next-Gen TTS',
         'hero.title': 'VieNeu-TTS — Vietnamese voice, authentic down to every sound grain.',
         'hero.subtitle': 'Instant voice cloning. 24 kHz. Fully offline.',
         'hero.tryDemo': 'Try Demo',
+        'hero.download': 'Download',
         'hero.github': 'GitHub',
         'hero.facebook': 'Facebook',
         'hero.stat1': 'Hours of Data',
         'hero.stat2': 'kHz Quality',
         'hero.stat3': 'Seconds Clone',
-        
+
         // Highlights
         'highlight.1.title': '1000 hours of curated data',
         'highlight.1.desc': 'Natural, stable pronunciation',
@@ -134,7 +138,7 @@ const translations = {
         'highlight.2.desc': 'Only 3–5 seconds of audio needed',
         'highlight.3.title': 'Vietnamese–English bilingual',
         'highlight.3.desc': 'Smooth code-switching',
-        
+
         // Demo
         'demo.title': 'Audio Demo',
         'demo.subtitle': 'Explore sample voices with different accents',
@@ -144,7 +148,7 @@ const translations = {
         'demo.voice4.name': 'Female - South',
         'demo.voice5.name': 'Male - Central',
         'demo.voice6.name': 'Female - Central',
-        
+
         // Features
         'features.title': 'Core Features',
         'features.1': 'Natural Vietnamese pronunciation',
@@ -153,7 +157,7 @@ const translations = {
         'features.4': 'High-fidelity voice cloning',
         'features.5': 'Real-time synthesis',
         'features.6': 'Production-ready API/UI',
-        
+
         // Comparison
         'comparison.title': 'Model Comparison',
         'comparison.model140': 'VieNeu-TTS-140h',
@@ -163,10 +167,10 @@ const translations = {
         'comparison.cloning': 'Cloning accuracy',
         'comparison.codeswitch': 'Code-switching',
         'comparison.speed': 'Speed',
-        
+
         // Video
         'video.title': 'Installation Guide',
-        
+
         // Pricing
         'pricing.title': 'Custom Voice Training Pricing',
         'pricing.cleaned': 'Cleaned + Transcribed Data',
@@ -182,7 +186,7 @@ const translations = {
         'pricing.includes.3': '2 free revisions',
         'pricing.includes.4': '30 days technical support',
         'pricing.tip': '💡 Tip: Preparing data according to the official guidelines can reduce costs by 40–50%.',
-        
+
         // Tech Specs
         'tech.title': 'Technical Specifications',
         'tech.backbone': 'Backbone',
@@ -194,12 +198,12 @@ const translations = {
         'tech.api': 'API',
         'tech.offline': 'Offline',
         'tech.fully': 'Fully offline capability',
-        
+
         // CTA
         'cta.title': 'Bring your Vietnamese voice into any product.',
         'cta.demo': 'Try Demo',
         'cta.github': 'GitHub',
-        
+
         // Author
         'author.title': 'About the Creator',
         'author.name': 'Phạm Nguyễn Ngọc Bảo',
@@ -211,7 +215,7 @@ const translations = {
         'author.otherProjects': 'Other Projects',
         'author.wordflux.desc': 'Translate DOCX using OpenAI - Preserve Format. Intelligent tool for translating Microsoft Word documents while maintaining perfect formatting.',
         'author.viewProject': 'View Project',
-        
+
         // Footer
         'footer.desc': 'Next-generation Vietnamese Text-to-Speech system',
         'footer.links': 'Links',

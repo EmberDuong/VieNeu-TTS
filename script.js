@@ -140,48 +140,67 @@ function initAudioWaveforms() {
 }
 
 // Audio player functionality
+let currentAudio = null;
+let currentButton = null;
+
 function initAudioPlayers() {
     const playButtons = document.querySelectorAll('.play-btn');
     
     playButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const audioId = btn.getAttribute('data-audio');
+            const audioSrc = btn.getAttribute('data-audio');
             const audioCard = btn.closest('.audio-card');
             const progressBar = audioCard.querySelector('.progress-bar');
             
-            // Toggle play/pause
-            if (btn.classList.contains('playing')) {
+            // If clicking the same button that's playing, pause it
+            if (btn === currentButton && currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
                 btn.classList.remove('playing');
-                // In a real implementation, pause the audio here
-                progressBar.style.width = '0%';
-            } else {
-                // Stop all other players
-                playButtons.forEach(b => {
-                    b.classList.remove('playing');
-                    const card = b.closest('.audio-card');
-                    if (card) {
-                        card.querySelector('.progress-bar').style.width = '0%';
-                    }
-                });
-                
-                btn.classList.add('playing');
-                
-                // Simulate audio playback
-                let progress = 0;
-                const interval = setInterval(() => {
-                    if (!btn.classList.contains('playing')) {
-                        clearInterval(interval);
-                        return;
-                    }
-                    progress += 0.5;
-                    progressBar.style.width = progress + '%';
-                    if (progress >= 100) {
-                        clearInterval(interval);
-                        btn.classList.remove('playing');
-                        progressBar.style.width = '0%';
-                    }
-                }, 50);
+                return;
             }
+            
+            // Stop any currently playing audio
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentButton) {
+                    currentButton.classList.remove('playing');
+                    const prevCard = currentButton.closest('.audio-card');
+                    if (prevCard) {
+                        prevCard.querySelector('.progress-bar').style.width = '0%';
+                    }
+                }
+            }
+            
+            // Create and play new audio
+            currentAudio = new Audio(audioSrc);
+            currentButton = btn;
+            
+            currentAudio.addEventListener('loadedmetadata', () => {
+                currentAudio.play();
+                btn.classList.add('playing');
+            });
+            
+            currentAudio.addEventListener('timeupdate', () => {
+                const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+                progressBar.style.width = progress + '%';
+            });
+            
+            currentAudio.addEventListener('ended', () => {
+                btn.classList.remove('playing');
+                progressBar.style.width = '0%';
+                currentAudio = null;
+                currentButton = null;
+            });
+            
+            currentAudio.addEventListener('error', (e) => {
+                console.error('Error loading audio:', e);
+                btn.classList.remove('playing');
+                progressBar.style.width = '0%';
+            });
+            
+            // Start loading and playing
+            currentAudio.load();
         });
     });
 }
